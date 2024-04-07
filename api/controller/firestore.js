@@ -4,10 +4,23 @@ const db = new Firestore({
     projectId: 'smartfinance-bills-beta',
     keyFilename: process.env.credentials,
 })
-const billsCategoryMap = db.collection('bills_config').doc('mapping')
+const billsCategoryMap = db.collection('bills_config').doc('mapping_test')
 
-exports.createCategoryMap = (req, res, next) => {
-    res.status(201).send('Requisição recebida com sucesso!');
+function replacer(key, value) {
+    if (value instanceof Object) {
+        return '[Socket/HTTPParser Object]'; // Placeholder representation
+    } else {
+        return value;
+    }
+}
+
+
+exports.createCategoryMap = async (req, res, next) => {
+    const data = req.body
+    const convertedData = { [data.name]: data.value }
+    console.log(`[DEBUG] creating ${convertedData}`)
+    await billsCategoryMap.update(convertedData)
+    res.status(201).send(convertedData)
 }
 
 exports.getCategoriesMap = async (req, res, next) => {
