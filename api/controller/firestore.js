@@ -6,15 +6,6 @@ const db = new Firestore({
 })
 const billsCategoryMap = db.collection('bills_config').doc('mapping_test')
 
-function replacer(key, value) {
-    if (value instanceof Object) {
-        return '[Socket/HTTPParser Object]'; // Placeholder representation
-    } else {
-        return value;
-    }
-}
-
-
 exports.createCategoryMap = async (req, res, next) => {
     const data = req.body
     const convertedData = { [data.name]: data.value }
