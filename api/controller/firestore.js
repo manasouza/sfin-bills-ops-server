@@ -9,7 +9,7 @@ const billsCategoryMap = db.collection('bills_config').doc('mapping_test')
 exports.createCategoryMap = async (req, res, next) => {
     const data = req.body
     const convertedData = { [data.name]: data.value }
-    console.log(`[DEBUG] creating ${convertedData}`)
+    console.log('[DEBUG] creating ' + JSON.stringify(convertedData))
     await billsCategoryMap.update(convertedData)
     res.status(201).send(convertedData)
 }

@@ -6,11 +6,9 @@ const pubSubClient = new PubSub(projectId);
 
 timeout = 60000
 
-let messageData = []
 
 exports.getUncategorizedValues = async (req, res, next) => {
     console.log('[DEBUG] retrieving uncategorized elements')
-    //projects/smartfinance-bills-beta/subscriptions/sfinbills-category
     const subscription = pubSubClient.subscription("sfinbills-category")
     let messageCount = 0;
     const messageHandler = message => {
@@ -18,9 +16,8 @@ exports.getUncategorizedValues = async (req, res, next) => {
         console.log(`\tData: ${message.data}`)
         console.log(`\tAttributes: ${message.attributes}`)
         messageCount += 1
-        messageData.push(message.data)
         message.ack()
-        res.status(200).send(messageData)
+        res.status(200).send(message.data)
     };
     subscription.on('message', messageHandler)
     setTimeout(() => {
