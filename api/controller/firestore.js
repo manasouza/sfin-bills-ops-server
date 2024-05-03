@@ -4,7 +4,8 @@ const db = new Firestore({
     projectId: 'smartfinance-bills-beta',
     keyFilename: process.env.credentials,
 })
-const billsCategoryMap = db.collection('bills_config').doc('mapping_test')
+// TODO: externalize config
+const billsCategoryMap = db.collection('bills_config').doc('mapping')
 
 exports.createCategoryMap = async (req, res, next) => {
     const data = req.body
