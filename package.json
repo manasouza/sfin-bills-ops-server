@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "2.8.5",
-    "express": "4.19.2",
+    "express": "4.21.2",
     "@google-cloud/firestore": "7.0.0",
     "@google-cloud/pubsub": "4.3.3",
     "google-spreadsheet": "4.1.3",
