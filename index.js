@@ -12,6 +12,7 @@ app.use("/", hcRoutes)
 app.all("/categories", categoryRoutes)
 app.all("/categories/mapping", categoryRoutes)
 app.all("/categories/unmapped", categoryRoutes)
+app.all("/settings", categoryRoutes)
 
 app.listen(3000, () => {
     console.log("API ready on port 3000")
